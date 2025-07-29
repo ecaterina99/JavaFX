@@ -4,15 +4,18 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class App extends Application {
 
@@ -58,7 +61,21 @@ public class App extends Application {
     }
      */
 
+    @Override
+    public void start(Stage stage) {
+        List<Node> controls = new ArrayList<>();
+        Node node;
+        for (int i = 0; i < 50; i++) {
+            node = new Button("Button" + i);
+            controls.add(node);
+        }
+        TilePane tilePane = new TilePane(10,10);
+        tilePane.getChildren().addAll(controls);
 
+        Scene scene = new Scene(tilePane);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     public static void main(String[] args) {
         launch();
