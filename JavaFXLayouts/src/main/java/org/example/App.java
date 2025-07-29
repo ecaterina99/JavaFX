@@ -61,6 +61,7 @@ public class App extends Application {
     }
      */
 
+    /*Tile pane
     @Override
     public void start(Stage stage) {
         List<Node> controls = new ArrayList<>();
@@ -73,6 +74,31 @@ public class App extends Application {
         tilePane.getChildren().addAll(controls);
 
         Scene scene = new Scene(tilePane);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+     */
+
+    
+    @Override
+    public void start(Stage stage) {
+        Button center = new Button("CENTER");
+        Button top = new Button("TOP");
+        Button right = new Button("RIGHT");
+        Button bottom = new Button("BOTTOM");
+        Button left = new Button("LEFT");
+        top.setMaxWidth(Double.MAX_VALUE);
+        bottom.setMaxWidth(Double.MAX_VALUE);
+
+        BorderPane borderPane = new BorderPane(center, top, right, bottom, left);
+        BorderPane.setAlignment(top, Pos.TOP_RIGHT);
+        BorderPane.setAlignment(bottom, Pos.TOP_RIGHT);
+
+        Insets margins = new Insets(10, 20, 10, 20);
+        BorderPane.setMargin(top, margins);
+
+        Scene scene = new Scene(borderPane);
         stage.setScene(scene);
         stage.show();
     }
