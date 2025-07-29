@@ -10,8 +10,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -128,6 +131,31 @@ public class App extends Application {
         stage.show();
     }
      */
+
+
+    @Override
+    public void start(Stage stage) {
+        Rectangle r = new Rectangle(200, 200);
+        r.setFill(Color.CHOCOLATE);
+
+        Rectangle r2 = new Rectangle(300, 200);
+        r2.setFill(Color.GREEN);
+
+        AnchorPane.setTopAnchor(r2, 200.0);
+        AnchorPane pane = new AnchorPane(r2,r);
+        pane.setBackground(new Background(new BackgroundFill(Color.BROWN, CornerRadii.EMPTY, Insets.EMPTY)));
+
+
+        TextArea textArea = new TextArea();
+
+        AnchorPane.setTopAnchor(textArea, 200.0);
+        AnchorPane.setLeftAnchor(textArea, 100.0);
+        pane.getChildren().add(textArea);
+
+        Scene scene = new Scene(pane, 800, 600);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     public static void main(String[] args) {
         launch();
