@@ -7,15 +7,13 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -132,27 +130,44 @@ public class App extends Application {
     }
      */
 
+    /* Anchor pane
+       @Override
+       public void start(Stage stage) {
+           Rectangle r = new Rectangle(200, 200);
+           r.setFill(Color.CHOCOLATE);
 
+           Rectangle r2 = new Rectangle(300, 200);
+           r2.setFill(Color.GREEN);
+
+           AnchorPane.setTopAnchor(r2, 200.0);
+           AnchorPane pane = new AnchorPane(r2,r);
+           pane.setBackground(new Background(new BackgroundFill(Color.BROWN, CornerRadii.EMPTY, Insets.EMPTY)));
+
+
+           TextArea textArea = new TextArea();
+
+           AnchorPane.setTopAnchor(textArea, 200.0);
+           AnchorPane.setLeftAnchor(textArea, 100.0);
+           pane.getChildren().add(textArea);
+
+           Scene scene = new Scene(pane, 800, 600);
+           stage.setScene(scene);
+           stage.show();
+       }
+
+     */
     @Override
     public void start(Stage stage) {
-        Rectangle r = new Rectangle(200, 200);
-        r.setFill(Color.CHOCOLATE);
+        TextField nameFld = new TextField();
+        nameFld.setPromptText("Your Name");
 
-        Rectangle r2 = new Rectangle(300, 200);
-        r2.setFill(Color.GREEN);
+        Text tx1 = new Text("I, ");
+        Text tx2 = new Text(" in full conscience and with sound mind, declare... \n\n Sincerely,\n");
 
-        AnchorPane.setTopAnchor(r2, 200.0);
-        AnchorPane pane = new AnchorPane(r2,r);
-        pane.setBackground(new Background(new BackgroundFill(Color.BROWN, CornerRadii.EMPTY, Insets.EMPTY)));
+        TextFlow tflow = new TextFlow();
 
-
-        TextArea textArea = new TextArea();
-
-        AnchorPane.setTopAnchor(textArea, 200.0);
-        AnchorPane.setLeftAnchor(textArea, 100.0);
-        pane.getChildren().add(textArea);
-
-        Scene scene = new Scene(pane, 800, 600);
+        tflow.getChildren().addAll(tx1, nameFld, tx2);
+        Scene scene = new Scene(tflow, 800, 600);
         stage.setScene(scene);
         stage.show();
     }
