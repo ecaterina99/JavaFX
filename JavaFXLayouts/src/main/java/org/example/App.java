@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -79,8 +80,8 @@ public class App extends Application {
     }
 
      */
-
-    
+    /*
+    Border Pane Layout
     @Override
     public void start(Stage stage) {
         Button center = new Button("CENTER");
@@ -102,6 +103,31 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
+    @Override
+    public void start(Stage stage) {
+
+        Button one = new Button("lobby");
+        Button two = new Button("start match");
+        Button three = new Button("help");
+        Button four = new Button("about");
+        Button five = new Button("copyright - the smart man");
+
+        BorderPane borderPane = new BorderPane();
+        FlowPane flowPane = new FlowPane(one, two, three, four);
+
+        flowPane.setAlignment(Pos.TOP_LEFT);
+        BorderPane.setAlignment(five, Pos.BOTTOM_RIGHT);
+
+        borderPane.setTop(flowPane);
+        borderPane.setBottom(five);
+        borderPane.setCenter(new Text("the game"));
+
+        Scene scene = new Scene(borderPane, 400, 300);
+        stage.setScene(scene);
+        stage.show();
+    }
+     */
 
     public static void main(String[] args) {
         launch();
