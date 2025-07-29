@@ -1,17 +1,23 @@
 package org.example;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
 
+    /*
+    //group
     @Override
     public void start(Stage stage) {
         Button button1 = new Button("First Button");
@@ -26,6 +32,33 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
+     */
+
+    /* HBox & VBox
+    @Override
+    public void start(Stage stage) {
+        Button button1 = new Button("First Button");
+        Button button2 = new Button("Second Button");
+        Button button3 = new Button("Third Button");
+
+        button1.setMaxHeight(60);
+        button1.setMaxWidth(200);
+
+        HBox.setHgrow(button1, Priority.ALWAYS);
+        Insets insets = new Insets(10, 20, 30, 40);
+        HBox.setMargin(button1, insets);
+
+        HBox root = new HBox(10,button1, button2, button3);
+        root.setAlignment(Pos.BOTTOM_RIGHT);
+        root.setFillHeight(true);
+
+        Scene scene = new Scene(root,300,300);
+        stage.setScene(scene);
+        stage.show();
+    }
+     */
+
+
 
     public static void main(String[] args) {
         launch();
