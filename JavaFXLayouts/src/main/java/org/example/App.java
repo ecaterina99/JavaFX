@@ -1,6 +1,9 @@
 package org.example;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -12,6 +15,8 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
@@ -130,46 +135,100 @@ public class App extends Application {
     }
      */
 
-    /* Anchor pane
-       @Override
-       public void start(Stage stage) {
-           Rectangle r = new Rectangle(200, 200);
-           r.setFill(Color.CHOCOLATE);
-
-           Rectangle r2 = new Rectangle(300, 200);
-           r2.setFill(Color.GREEN);
-
-           AnchorPane.setTopAnchor(r2, 200.0);
-           AnchorPane pane = new AnchorPane(r2,r);
-           pane.setBackground(new Background(new BackgroundFill(Color.BROWN, CornerRadii.EMPTY, Insets.EMPTY)));
-
-
-           TextArea textArea = new TextArea();
-
-           AnchorPane.setTopAnchor(textArea, 200.0);
-           AnchorPane.setLeftAnchor(textArea, 100.0);
-           pane.getChildren().add(textArea);
-
-           Scene scene = new Scene(pane, 800, 600);
-           stage.setScene(scene);
-           stage.show();
-       }
-
-     */
+ /* Anchor pane
     @Override
     public void start(Stage stage) {
-        TextField nameFld = new TextField();
-        nameFld.setPromptText("Your Name");
+        Rectangle r = new Rectangle(200, 200);
+        r.setFill(Color.CHOCOLATE);
 
-        Text tx1 = new Text("I, ");
-        Text tx2 = new Text(" in full conscience and with sound mind, declare... \n\n Sincerely,\n");
+        Rectangle r2 = new Rectangle(300, 200);
+        r2.setFill(Color.GREEN);
 
-        TextFlow tflow = new TextFlow();
+        AnchorPane.setTopAnchor(r2, 200.0);
+        AnchorPane pane = new AnchorPane(r2,r);
+        pane.setBackground(new Background(new BackgroundFill(Color.BROWN, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        tflow.getChildren().addAll(tx1, nameFld, tx2);
-        Scene scene = new Scene(tflow, 800, 600);
+
+        TextArea textArea = new TextArea();
+
+        AnchorPane.setTopAnchor(textArea, 200.0);
+        AnchorPane.setLeftAnchor(textArea, 100.0);
+        pane.getChildren().add(textArea);
+
+        Scene scene = new Scene(pane, 800, 600);
         stage.setScene(scene);
         stage.show();
+    }
+
+  */
+    /*
+ @Override
+ public void start(Stage stage) {
+     TextField nameFld = new TextField();
+     nameFld.setPromptText("Your Name");
+
+     Text tx1 = new Text("I, ");
+     Text tx2 = new Text(" in full conscience and with sound mind, declare... \n\n Sincerely,\n");
+
+     TextFlow tflow = new TextFlow();
+
+     tflow.getChildren().addAll(tx1, nameFld, tx2);
+     Scene scene = new Scene(tflow, 800, 600);
+     stage.setScene(scene);
+     stage.show();
+ }
+
+     */
+
+    @Override
+    public void start(Stage stage) {
+        stage.setTitle("JavaFX Welcome");
+
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(25, 25, 25, 25));
+
+        Text sceneTitle = new Text("Welcome");
+        sceneTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        grid.add(sceneTitle, 0, 0, 2, 1);
+
+        TextField userTextField = new TextField();
+        grid.add(userTextField, 1, 1);
+
+        Label userName = new Label("User name:");
+        userName.setLabelFor(userTextField);
+        grid.add(userName, 0, 1);
+
+        PasswordField passBox = new PasswordField();
+        Label pass = new Label("Password:");
+        pass.setLabelFor(passBox);
+        grid.addRow(2, pass, passBox);
+
+        Button btn = new Button("Sing in");
+        GridPane.setHalignment(btn, HPos.RIGHT);
+        grid.add(btn, 1, 4);
+
+        Text actionText = new Text();
+        grid.add(actionText, 1, 6);
+
+
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                actionText.setFill(Color.FIREBRICK);
+                actionText.setText("Sign in button pressed");
+            }
+        });
+
+        Scene scene = new Scene(grid, 300, 275);
+        ColumnConstraints cc = new ColumnConstraints();
+        cc.setHgrow(Priority.ALWAYS);
+        grid.getColumnConstraints().addAll(new ColumnConstraints(), cc);
+
+        stage.setScene(scene);
+        stage.show();
+
     }
 
     public static void main(String[] args) {
