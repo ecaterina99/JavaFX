@@ -64,11 +64,11 @@ public class ToggleTest extends Application {
 
         ToggleGroup group = new ToggleGroup();
         group.getToggles().addAll(s_toggle, m_toggle, l_toggle, xl_toggle);
-        group.selectedToggleProperty().addListener((observable, oldValue, newValue) -> toggle(observable, oldValue, newValue));
+        group.selectedToggleProperty().addListener(this::toggle);
 
         GridPane gridPane = new GridPane();
-        gridPane.setVgap(10.0);
-        gridPane.setHgap(10.0);
+        gridPane.setVgap(20.0);
+        gridPane.setHgap(20.0);
         gridPane.add(header, 0, 0, 4, 1);
         gridPane.addRow(1, s_toggle, m_toggle, l_toggle, xl_toggle);
         gridPane.add(info, 0, 2, 4, 1);
