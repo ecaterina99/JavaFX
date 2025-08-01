@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<GridPane alignment="CENTER" hgap="5" vgap="5">
+    <padding>
+        <Insets bottom="15" left="15" right="15" top="15"/>
+    </padding>
+
+    <children>
+        <Text text="Add New Person" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2">
+            <font>
+                <Font size="30"/>
+            </font>
+        </Text>
+        <Label text="First name" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <Label text="Last name" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <Label text="Email" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <Label text="Address" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <Label text="Country" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+
+        <TextField GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <TextField GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <TextField GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <TextField GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+
+        <HBox alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <children>
+                <Button mnemonicParsing="true" text="_Save"/>
+                <Button mnemonicParsing="true" text="_Clear"/>
+            </children>
+        </HBox>
+
+    </children>
+
+</GridPane>
