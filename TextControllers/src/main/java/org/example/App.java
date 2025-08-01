@@ -44,6 +44,8 @@ public class App extends Application {
         root.addRow(5, new Label("Selection:"), selectionLbl);
         root.addRow(6, new Label("Text:"), textLbl);
 
+
+
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Text Input Control Properties");
