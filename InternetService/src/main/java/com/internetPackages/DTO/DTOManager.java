@@ -7,15 +7,15 @@ import org.springframework.stereotype.Component;
 public class DTOManager {
 
 
-    public PackageDTO InternetPackageToDTO(InternetPackage internetPackage) {
-        PackageDTO packageDTO = new PackageDTO();
+    public InternetPackageDTO internetPackageToDTO(InternetPackage internetPackage) {
+        InternetPackageDTO internetPackageDTO = new InternetPackageDTO();
 
-        packageDTO.setId(internetPackage.getId());
-        packageDTO.setFullName(internetPackage.getFirstName()+" "+internetPackage.getLastName());
-        packageDTO.setAddress(internetPackage.getAddress());
-        packageDTO.setSpeed(internetPackage.getSpeed());
-        packageDTO.setDuration(internetPackage.getDuration());
-        packageDTO.setBandwidth(internetPackage.getBandwidth());
-        return packageDTO;
+        internetPackageDTO.setId(internetPackage.getId());
+        internetPackageDTO.setFullName(internetPackage.getFirstName()+" "+internetPackage.getLastName());
+        internetPackageDTO.setAddress(internetPackage.getAddress());
+        internetPackageDTO.setSpeed(internetPackage.getSpeed());
+        internetPackageDTO.setDuration(internetPackage.getDuration());
+        internetPackageDTO.setBandwidth(internetPackage.getBandwidth());
+        return internetPackageDTO;
     }
 }

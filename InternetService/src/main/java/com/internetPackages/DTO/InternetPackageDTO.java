@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PackageDTO {
+public class InternetPackageDTO {
     private int id;
     private String fullName;
     private String address;
