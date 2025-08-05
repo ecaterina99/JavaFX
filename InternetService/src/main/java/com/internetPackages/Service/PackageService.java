@@ -5,8 +5,6 @@ import com.internetPackages.Model.InternetPackageModel;
 import com.internetPackages.PackageMapper;
 import com.internetPackages.Repository.PackageRepositoryJPA;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,11 +16,6 @@ public class PackageService {
     public PackageService(PackageRepositoryJPA repository,PackageMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
-    }
-
-    public List<InternetPackageEntity> findAllSales() {
-        List<InternetPackageEntity> iterablePackages = repository.findAll();
-        return new ArrayList<>(iterablePackages);
     }
 
     public InternetPackageModel save(InternetPackageModel model) {
@@ -38,6 +31,4 @@ public class PackageService {
     public void delete(Integer id) {
         repository.deleteById(id);
     }
-
-
 }

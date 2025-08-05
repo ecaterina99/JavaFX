@@ -22,14 +22,14 @@
 
     <children>
 
-        <GridPane alignment="CENTER" hgap="5" vgap="5" prefWidth="400">
+        <GridPane alignment="CENTER" hgap="5" vgap="15" prefWidth="400">
             <padding>
                 <Insets bottom="15" left="15" right="15" top="15"/>
             </padding>
 
 
             <children>
-                <Label text="Add New Person" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">
+                <Label text="Add new package" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">
                     <font>
                         <Font size="30"/>
                     </font>
@@ -87,7 +87,7 @@
             <children>
                 <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">
                <children>
-                <Label text="Package Data">
+                <Label text="Package info">
                     <font>
                         <Font size="30"/>
                     </font>
@@ -96,7 +96,7 @@
                    <Button fx:id="closeBtn" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="20" prefHeight="20"
                            onAction="#closeForm">
                        <graphic>
-                           <ImageView fitWidth="16" fitHeight="16" preserveRatio="true">
+                           <ImageView fitWidth="25" fitHeight="25" preserveRatio="true">
                                <image>
                                    <Image url="@close_btn.png"/>
                                </image>
@@ -106,7 +106,7 @@
                </children>
                 </HBox>
                 <TableView fx:id="dataTable" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2"
-                           prefHeight="350" prefWidth="450">
+                           prefHeight="300" prefWidth="450">
                     <columns>
                         <TableColumn fx:id="firstNameColumn" text="First Name" prefWidth="75"/>
                         <TableColumn fx:id="lastNameColumn" text="Last Name" prefWidth="75"/>

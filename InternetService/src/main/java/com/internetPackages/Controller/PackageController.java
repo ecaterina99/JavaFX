@@ -3,12 +3,16 @@ package com.internetPackages.Controller;
 import com.internetPackages.Model.InternetPackageModel;
 import com.internetPackages.Service.PackageService;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
@@ -49,6 +53,25 @@ public class PackageController implements Initializable {
     private RadioButton bandwidthFlat;
 
 
+    @FXML
+    private TableView<InternetPackageModel> dataTable;
+    @FXML
+    private TableColumn<InternetPackageModel, String> firstNameColumn;
+    @FXML
+    private TableColumn<InternetPackageModel, String> lastNameColumn;
+    @FXML
+    private TableColumn<InternetPackageModel, String> addressColumn;
+    @FXML
+    private TableColumn<InternetPackageModel, String> speedColumn;
+    @FXML
+    private TableColumn<InternetPackageModel, String> bandwidthColumn;
+    @FXML
+    private TableColumn<InternetPackageModel, String> durationColumn;
+
+
+    private ObservableList<InternetPackageModel> tableData;
+
+
     private final PackageService packageService;
     private final InternetPackageModel model;
 
@@ -81,6 +104,8 @@ public class PackageController implements Initializable {
         firstName.textProperty().bindBidirectional(model.firstNameProperty());
         lastName.textProperty().bindBidirectional(model.lastNameProperty());
         address.textProperty().bindBidirectional(model.addressProperty());
+
+
 
         String currentDuration = model.getDuration();
         if (currentDuration != null && !currentDuration.isEmpty()) {
@@ -144,9 +169,50 @@ public class PackageController implements Initializable {
                 model.setBandwidth(selected.getText());
             }
         });
-
-
+        initializeTable();
+        loadTableData();
     }
+
+
+
+    private void initializeTable() {
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
+        speedColumn.setCellValueFactory(new PropertyValueFactory<>("speed"));
+        bandwidthColumn.setCellValueFactory(new PropertyValueFactory<>("bandwidth"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
+
+        tableData = FXCollections.observableArrayList();
+        dataTable.setItems(tableData);
+
+        dataTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                loadSelectedItemToForm(newValue);
+            }
+        });
+    }
+
+    private void loadTableData() {
+        try {
+            List<InternetPackageModel> packages = packageService.findAll();
+            tableData.clear();
+            tableData.addAll(packages);
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to load data: " + e.getMessage());
+        }
+    }
+
+    private void loadSelectedItemToForm(InternetPackageModel selectedItem) {
+        model.setId(selectedItem.getId());
+        model.setFirstName(selectedItem.getFirstName());
+        model.setLastName(selectedItem.getLastName());
+        model.setAddress(selectedItem.getAddress());
+        model.setSpeed(selectedItem.getSpeed());
+        model.setBandwidth(selectedItem.getBandwidth());
+        model.setDuration(selectedItem.getDuration());
+    }
+
 
     @FXML
     private void save() {
@@ -155,6 +221,7 @@ public class PackageController implements Initializable {
             packageService.save(model);
             showAlert(Alert.AlertType.INFORMATION, "Success", "Package saved successfully!");
             clearForm();
+            loadTableData();
         } else {
             showAlert(Alert.AlertType.ERROR, "Error", "Please fill all fields!");
         }
@@ -162,8 +229,19 @@ public class PackageController implements Initializable {
 
     @FXML
     private void deleteRow() {
-        if(model!=null) {
-            packageService.delete(model.getId());
+        InternetPackageModel selectedItem = dataTable.getSelectionModel().getSelectedItem();
+
+        if (selectedItem != null) {
+            try {
+                packageService.delete(selectedItem.getId());
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Package deleted successfully!");
+                loadTableData();
+                clearForm();
+            } catch (Exception e) {
+                showAlert(Alert.AlertType.ERROR, "Error", "Failed to delete package: " + e.getMessage());
+            }
+        } else {
+            showAlert(Alert.AlertType.WARNING, "Warning", "Please select a package to delete!");
         }
     }
 
@@ -178,10 +256,8 @@ public class PackageController implements Initializable {
         if (durationGroup != null) durationGroup.selectToggle(null);
         model.setSpeed(null);
         if (speedGroup != null) speedGroup.selectToggle(null);
+        dataTable.getSelectionModel().clearSelection();
     }
-
-
-
 
     private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
