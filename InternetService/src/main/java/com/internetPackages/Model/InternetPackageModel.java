@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 @Component
 public class InternetPackageModel {
-    private final LongProperty id = new SimpleLongProperty();
+    private final IntegerProperty id = new SimpleIntegerProperty();
     private final StringProperty firstName = new SimpleStringProperty();
     private final StringProperty lastName = new SimpleStringProperty();
     private final StringProperty address = new SimpleStringProperty();
@@ -25,30 +25,22 @@ public class InternetPackageModel {
     }
 
     public InternetPackageModel() {
-
     }
 
     private final ObjectProperty<ArrayList<String>> errorList = new SimpleObjectProperty<>(this, "errorList", new ArrayList<>());
 
-    public ObjectProperty<ArrayList<String>> errorsProperty() {
-        return errorList;
-    }
 
     public boolean isValid() {
-        boolean valid = true;
-        if (firstName.get() != null && firstName.get().equals("")) {
-            errorList.get().add("First Name cannot be empty!");
-            valid = false;
-        }
-        if (lastName.get() != null && lastName.get().equals("")) {
-            errorList.get().add("Last Name cannot be empty!");
-            valid = false;
-        }
-        if (address.get() != null && address.get().equals("")) {
-            errorList.get().add("Email cannot be empty!");
-            valid = false;
-        }
-        return valid;
+        return !isNullOrEmpty(getFirstName()) &&
+                !isNullOrEmpty(getLastName()) &&
+                !isNullOrEmpty(getAddress()) &&
+                !isNullOrEmpty(getSpeed()) &&
+                !isNullOrEmpty(getBandwidth()) &&
+                !isNullOrEmpty(getDuration());
+    }
+
+    private boolean isNullOrEmpty(String str) {
+        return str == null || str.trim().isEmpty();
     }
 
     public StringProperty firstNameProperty() {
@@ -75,20 +67,16 @@ public class InternetPackageModel {
         return duration;
     }
 
+    public IntegerProperty idProperty() {
+        return id;
+    }
+
     public String getLastName() {
         return lastName.get();
     }
 
-    public ArrayList<String> getErrorList() {
-        return errorList.get();
-    }
-
-    public ObjectProperty<ArrayList<String>> errorListProperty() {
-        return errorList;
-    }
-
     public String getDuration() {
-        return duration.get();
+        return this.duration.get();
     }
 
     public String getBandwidth() {
@@ -107,16 +95,13 @@ public class InternetPackageModel {
         return firstName.get();
     }
 
-    public long getId() {
-        return id.get();
+    public int getId() {
+        return  id.get();
     }
 
-    public LongProperty idProperty() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id.set(Long.parseLong(id));
+    public void setId(Integer id) {
+        this.id.set(id);
     }
 
     public void setFirstName(String firstName) {
@@ -141,6 +126,14 @@ public class InternetPackageModel {
 
     public void setDuration(String duration) {
         this.duration.set(duration);
+    }
+
+    public ArrayList<String> getErrorList() {
+        return errorList.get();
+    }
+
+    public ObjectProperty<ArrayList<String>> errorListProperty() {
+        return errorList;
     }
 
 }

@@ -9,25 +9,26 @@ public class PackageMapper {
 
     public InternetPackageModel entityToModel(InternetPackageEntity entity) {
 
-        InternetPackageModel internetPackageModel = new InternetPackageModel();
-        internetPackageModel.setFirstName(entity.getFirstName());
-        internetPackageModel.setLastName(entity.getLastName());
-        internetPackageModel.setAddress(entity.getAddress());
-        internetPackageModel.setBandwidth(entity.getBandwidth());
-        internetPackageModel.setSpeed(entity.getSpeed());
-        internetPackageModel.setDuration(entity.getDuration());
-        return internetPackageModel;
+        InternetPackageModel model = new InternetPackageModel();
+
+        model.setFirstName(entity.getFirstName());
+        model.setLastName(entity.getLastName());
+        model.setAddress(entity.getAddress());
+        model.setBandwidth(entity.getBandwidth());
+        model.setSpeed(entity.getSpeed());
+        model.setDuration(entity.getDuration());
+        return model;
     }
 
     public InternetPackageEntity modelToEntity(InternetPackageModel model) {
-        InternetPackageEntity internetPackageEntity = new InternetPackageEntity();
-        internetPackageEntity.setFirstName(model.getFirstName());
-        internetPackageEntity.setLastName(model.getLastName());
-        internetPackageEntity.setAddress(model.getAddress());
-        internetPackageEntity.setDuration(model.getDuration());
-        internetPackageEntity.setSpeed(model.getSpeed());
-        internetPackageEntity.setBandwidth(model.getBandwidth());
-        return internetPackageEntity;
+        InternetPackageEntity entity = new InternetPackageEntity();
+        entity.setFirstName(model.getFirstName());
+        entity.setLastName(model.getLastName());
+        entity.setAddress(model.getAddress());
+        entity.setDuration(model.getDuration());
+        entity.setSpeed(model.getSpeed());
+        entity.setBandwidth(model.getBandwidth());
+        return entity;
     }
 
 }

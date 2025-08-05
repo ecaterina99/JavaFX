@@ -9,6 +9,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.VBox?>
 <GridPane alignment="CENTER" hgap="5" vgap="5" xmlns:fx="http://javafx.com/fxml"
           fx:controller="com.internetPackages.Controller.PackageController">
     <padding>
@@ -47,17 +49,36 @@
         <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="firstName"/>
         <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="lastName"/>
         <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="address"/>
-        <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" fx:id="speed"/>
-        <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" fx:id="bandwidth"/>
-        <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" fx:id="duration"/>
 
-        <HBox alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="8">
-            <children>
-                <Button mnemonicParsing="true" text="_Save" fx:id="saveBtn" onAction="#save"/>
-                <Button mnemonicParsing="true" text="_Clear" fx:id="clearBtn" onAction="#clearForm"/>
-            </children>
+        <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <RadioButton fx:id="speed2" text="2" />
+            <RadioButton fx:id="speed5" text="5" />
+            <RadioButton fx:id="speed10" text="10" />
+            <RadioButton fx:id="speed20" text="20" />
+            <RadioButton fx:id="speed50" text="50" />
+            <RadioButton fx:id="speed100" text="100" />
         </HBox>
 
+        <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <RadioButton fx:id="bandwidth1" text="1" />
+            <RadioButton fx:id="bandwidth5" text="5" />
+            <RadioButton fx:id="bandwidth10" text="10" />
+            <RadioButton fx:id="bandwidth100" text="100" />
+            <RadioButton fx:id="bandwidthFlat" text="Flat" />
+        </HBox>
+
+        <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <RadioButton fx:id="oneYearRadio" text="1 year" />
+            <RadioButton fx:id="twoYearsRadio" text="2 years" />
+        </HBox>
+
+        <HBox spacing="10" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="8">
+            <children>
+                <Button mnemonicParsing="true" text="_Save package" fx:id="saveBtn" onAction="#save"/>
+                <Button mnemonicParsing="true" text="_Clear form" fx:id="clearBtn" onAction="#clearForm"/>
+                <Button mnemonicParsing="true" text="_Delete row" fx:id="deleteBtn" onAction="#deleteRow"/>
+            </children>
+        </HBox>
     </children>
 
 </GridPane>

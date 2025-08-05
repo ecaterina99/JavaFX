@@ -16,7 +16,7 @@
     -fx-border-color: #75606F;
 }
 
-#saveBtn, #clearBtn {
+#saveBtn, #clearBtn, #deleteBtn {
     -fx-background-color: transparent;
     -fx-border-color: #FFFFFF;
     -fx-text-fill: white;
@@ -29,11 +29,32 @@
 
 }
 
-#saveBtn:hover, #clearBtn:hover {
+#saveBtn:hover, #clearBtn:hover, #deleteBtn {
     -fx-border-color: #75606F;
 }
 
-#saveBtn:pressed, #clearBtn:pressed {
+#saveBtn:pressed, #clearBtn:pressed, #deleteBtn:pressed {
     -fx-border-color: #75606F;
     -fx-background-color: #75606F;
+}
+
+.radio-button {
+    -fx-text-fill: white;
+}
+
+.radio-button .radio {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
+}
+
+.radio-button:selected .radio {
+    -fx-background-color: #75606F;
+    -fx-border-color: #75606F;
+}
+
+.radio-button .dot {
+    -fx-background-color: white;
+    -fx-background-radius: 50%;
 }
