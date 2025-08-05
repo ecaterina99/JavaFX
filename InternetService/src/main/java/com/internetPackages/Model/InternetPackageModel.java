@@ -2,9 +2,9 @@ package com.internetPackages.Model;
 
 import javafx.beans.property.*;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-
+/**
+ * UI Model for Internet Package data binding and validation.
+ */
 @Component
 public class InternetPackageModel {
     private final IntegerProperty id = new SimpleIntegerProperty();
@@ -26,9 +26,6 @@ public class InternetPackageModel {
 
     public InternetPackageModel() {
     }
-
-    private final ObjectProperty<ArrayList<String>> errorList = new SimpleObjectProperty<>(this, "errorList", new ArrayList<>());
-
 
     public boolean isValid() {
         return !isNullOrEmpty(getFirstName()) &&
@@ -96,9 +93,8 @@ public class InternetPackageModel {
     }
 
     public int getId() {
-        return  id.get();
+        return id.get();
     }
-
 
     public void setId(Integer id) {
         this.id.set(id);
@@ -126,14 +122,6 @@ public class InternetPackageModel {
 
     public void setDuration(String duration) {
         this.duration.set(duration);
-    }
-
-    public ArrayList<String> getErrorList() {
-        return errorList.get();
-    }
-
-    public ObjectProperty<ArrayList<String>> errorListProperty() {
-        return errorList;
     }
 
 }

@@ -1,6 +1,5 @@
-package com.internetPackages;
+package com.internetPackages.Configuration;
 
-import com.internetPackages.Controller.PackageController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,17 +10,17 @@ import javafx.stage.StageStyle;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
-
+/**
+ * Initializes the JavaFX primary stage when StageReadyEvent is published.
+ */
 @Component
 public class StageInitializer implements ApplicationListener<StageReadyEvent> {
 
-    private final PackageController packageController;
     private final ApplicationContext applicationContext;
     private double dragOffsetX;
     private double dragOffsetY;
 
-    public StageInitializer(PackageController packageController, ApplicationContext applicationContext) {
-        this.packageController = packageController;
+    public StageInitializer(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
@@ -40,7 +39,6 @@ public class StageInitializer implements ApplicationListener<StageReadyEvent> {
             stage.setScene(scene);
             stage.setTitle("Internet Package Management");
             stage.show();
-
 
             scene.setOnMousePressed(new EventHandler<MouseEvent>() {
                 @Override

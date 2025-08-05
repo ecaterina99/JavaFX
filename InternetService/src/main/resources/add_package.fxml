@@ -10,8 +10,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.control.RadioButton?>
-
-
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 <HBox spacing="10" xmlns:fx="http://javafx.com/fxml"
@@ -85,25 +83,27 @@
             </padding>
 
             <children>
-                <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">
-               <children>
-                <Label text="Package info">
-                    <font>
-                        <Font size="30"/>
-                    </font>
-                </Label>
-                   <HBox HBox.hgrow="ALWAYS"/>
-                   <Button fx:id="closeBtn" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="20" prefHeight="20"
-                           onAction="#closeForm">
-                       <graphic>
-                           <ImageView fitWidth="25" fitHeight="25" preserveRatio="true">
-                               <image>
-                                   <Image url="@close_btn.png"/>
-                               </image>
-                           </ImageView>
-                       </graphic>
-                   </Button>
-               </children>
+                <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                      GridPane.columnSpan="2">
+                    <children>
+                        <Label text="Package info">
+                            <font>
+                                <Font size="30"/>
+                            </font>
+                        </Label>
+                        <HBox HBox.hgrow="ALWAYS"/>
+                        <Button fx:id="closeBtn" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="20"
+                                prefHeight="20"
+                                onAction="#closeForm">
+                            <graphic>
+                                <ImageView fitWidth="25" fitHeight="25" preserveRatio="true">
+                                    <image>
+                                        <Image url="@close_btn.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
                 </HBox>
                 <TableView fx:id="dataTable" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2"
                            prefHeight="300" prefWidth="450">

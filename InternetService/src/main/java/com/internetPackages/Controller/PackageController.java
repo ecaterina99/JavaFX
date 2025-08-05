@@ -14,7 +14,10 @@ import org.springframework.stereotype.Component;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
+/**
+ * Controller class for managing Internet Package operations.
+ * Handles UI interactions for creating, updating, deleting and displaying internet packages.
+ */
 @Component
 public class PackageController implements Initializable {
     @FXML
@@ -26,7 +29,6 @@ public class PackageController implements Initializable {
     private RadioButton oneYearRadio;
     @FXML
     private RadioButton twoYearsRadio;
-
 
     @FXML
     private RadioButton speed2;
@@ -52,7 +54,6 @@ public class PackageController implements Initializable {
     @FXML
     private RadioButton bandwidthFlat;
 
-
     @FXML
     private TableView<InternetPackageModel> dataTable;
     @FXML
@@ -68,9 +69,7 @@ public class PackageController implements Initializable {
     @FXML
     private TableColumn<InternetPackageModel, String> durationColumn;
 
-
     private ObservableList<InternetPackageModel> tableData;
-
 
     private final PackageService packageService;
     private final InternetPackageModel model;
@@ -82,6 +81,15 @@ public class PackageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initializeToggleGroups();
+        bindFieldsToModel();
+        setupInitialRadioButtonValues();
+        addRadioButtonListeners();
+        initializeTable();
+        loadTableData();
+    }
+
+    private void initializeToggleGroups() {
         durationGroup = new ToggleGroup();
         oneYearRadio.setToggleGroup(durationGroup);
         twoYearsRadio.setToggleGroup(durationGroup);
@@ -100,13 +108,15 @@ public class PackageController implements Initializable {
         bandwidth10.setToggleGroup(bandwidthGroup);
         bandwidth100.setToggleGroup(bandwidthGroup);
         bandwidthFlat.setToggleGroup(bandwidthGroup);
+    }
 
+    private void bindFieldsToModel() {
         firstName.textProperty().bindBidirectional(model.firstNameProperty());
         lastName.textProperty().bindBidirectional(model.lastNameProperty());
         address.textProperty().bindBidirectional(model.addressProperty());
+    }
 
-
-
+    private void setupInitialRadioButtonValues() {
         String currentDuration = model.getDuration();
         if (currentDuration != null && !currentDuration.isEmpty()) {
             if (currentDuration.equals("1 year")) {
@@ -118,62 +128,48 @@ public class PackageController implements Initializable {
 
         String currentSpeed = model.getSpeed();
         if (currentSpeed != null && !currentSpeed.isEmpty()) {
-            if (currentSpeed.equals("2")) {
-                speedGroup.selectToggle(speed2);
-            } else if (currentSpeed.equals("5")) {
-                speedGroup.selectToggle(speed5);
-            } else if (currentSpeed.equals("10")) {
-                speedGroup.selectToggle(speed10);
-            } else if (currentSpeed.equals("20")) {
-                speedGroup.selectToggle(speed20);
-            } else if (currentSpeed.equals("50")) {
-                speedGroup.selectToggle(speed50);
-            } else if (currentSpeed.equals("100")) {
-                speedGroup.selectToggle(speed100);
+            switch (currentSpeed) {
+                case "2" -> speedGroup.selectToggle(speed2);
+                case "5" -> speedGroup.selectToggle(speed5);
+                case "10" -> speedGroup.selectToggle(speed10);
+                case "20" -> speedGroup.selectToggle(speed20);
+                case "50" -> speedGroup.selectToggle(speed50);
+                case "100" -> speedGroup.selectToggle(speed100);
             }
         }
 
         String currentBandwidth = model.getBandwidth();
         if (currentBandwidth != null && !currentBandwidth.isEmpty()) {
-            if (currentBandwidth.equals("1")) {
-                bandwidthGroup.selectToggle(bandwidth1);
-            } else if (currentBandwidth.equals("5")) {
-                bandwidthGroup.selectToggle(bandwidth5);
-            } else if (currentBandwidth.equals("10")) {
-                bandwidthGroup.selectToggle(bandwidth10);
-            } else if (currentBandwidth.equals("100")) {
-                bandwidthGroup.selectToggle(bandwidth100);
-            } else if (currentBandwidth.equals("Flat")) {
-                bandwidthGroup.selectToggle(bandwidthFlat);
+            switch (currentBandwidth) {
+                case "1" -> bandwidthGroup.selectToggle(bandwidth1);
+                case "5" -> bandwidthGroup.selectToggle(bandwidth5);
+                case "10" -> bandwidthGroup.selectToggle(bandwidth10);
+                case "100" -> bandwidthGroup.selectToggle(bandwidth100);
+                case "Flat" -> bandwidthGroup.selectToggle(bandwidthFlat);
             }
         }
+    }
 
-
+    private void addRadioButtonListeners() {
         durationGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
             if (newToggle != null) {
                 RadioButton selected = (RadioButton) newToggle;
                 model.setDuration(selected.getText());
             }
         });
-
         speedGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
             if (newToggle != null) {
                 RadioButton selected = (RadioButton) newToggle;
                 model.setSpeed(selected.getText());
             }
         });
-
         bandwidthGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
             if (newToggle != null) {
                 RadioButton selected = (RadioButton) newToggle;
                 model.setBandwidth(selected.getText());
             }
         });
-        initializeTable();
-        loadTableData();
     }
-
-
 
     private void initializeTable() {
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -186,11 +182,6 @@ public class PackageController implements Initializable {
         tableData = FXCollections.observableArrayList();
         dataTable.setItems(tableData);
 
-        dataTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                loadSelectedItemToForm(newValue);
-            }
-        });
     }
 
     private void loadTableData() {
@@ -203,20 +194,8 @@ public class PackageController implements Initializable {
         }
     }
 
-    private void loadSelectedItemToForm(InternetPackageModel selectedItem) {
-        model.setId(selectedItem.getId());
-        model.setFirstName(selectedItem.getFirstName());
-        model.setLastName(selectedItem.getLastName());
-        model.setAddress(selectedItem.getAddress());
-        model.setSpeed(selectedItem.getSpeed());
-        model.setBandwidth(selectedItem.getBandwidth());
-        model.setDuration(selectedItem.getDuration());
-    }
-
-
     @FXML
     private void save() {
-
         if (model.isValid()) {
             packageService.save(model);
             showAlert(Alert.AlertType.INFORMATION, "Success", "Package saved successfully!");

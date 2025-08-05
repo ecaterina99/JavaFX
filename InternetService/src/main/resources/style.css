@@ -70,6 +70,7 @@
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
+
 .table-view .table-cell {
     -fx-background-color: transparent;
     -fx-text-fill: white;

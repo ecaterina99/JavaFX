@@ -1,9 +1,11 @@
-package com.internetPackages;
+package com.internetPackages.Configuration;
 
 import com.internetPackages.Model.InternetPackageEntity;
 import com.internetPackages.Model.InternetPackageModel;
 import org.springframework.stereotype.Component;
-
+/**
+ * A component that maps between entity and model objects for InternetPackage.
+ */
 @Component
 public class PackageMapper {
 
