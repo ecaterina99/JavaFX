@@ -1,0 +1,77 @@
+.root {
+    -fx-background-color: #373435;
+}
+
+.label {
+    -fx-text-fill: white;
+}
+
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: #FFFFFF;
+    -fx-text-fill: white;
+}
+
+.text-field:hover, .text-field:focused {
+    -fx-border-color: #75606F;
+}
+
+#saveBtn, #clearBtn, #deleteBtn {
+    -fx-background-color: transparent;
+    -fx-border-color: #FFFFFF;
+    -fx-text-fill: white;
+}
+
+#closeBtn {
+    -fx-graphic: url('close_btn.png');
+    -fx-background-color: transparent;
+    -fx-border-width: 0.0;
+}
+
+#saveBtn:hover, #clearBtn:hover, #deleteBtn:hover {
+    -fx-border-color: #75606F;
+}
+
+#saveBtn:pressed, #clearBtn:pressed, #deleteBtn:pressed {
+    -fx-border-color: #75606F;
+    -fx-background-color: #75606F;
+}
+
+.radio-button {
+    -fx-text-fill: white;
+}
+
+.radio-button .radio {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
+}
+
+.radio-button:selected .radio {
+    -fx-background-color: #75606F;
+    -fx-border-color: #75606F;
+}
+
+.radio-button .dot {
+    -fx-background-color: white;
+    -fx-background-radius: 50%;
+}
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-control-inner-background: transparent;
+    -fx-control-inner-background-alt: transparent;
+    -fx-table-cell-border-color: rgba(255, 255, 255, 0.3);
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+}
