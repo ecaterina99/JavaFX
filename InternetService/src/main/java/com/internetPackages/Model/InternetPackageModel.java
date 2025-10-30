@@ -27,19 +27,6 @@ public class InternetPackageModel {
     public InternetPackageModel() {
     }
 
-    public boolean isValid() {
-        return !isNullOrEmpty(getFirstName()) &&
-                !isNullOrEmpty(getLastName()) &&
-                !isNullOrEmpty(getAddress()) &&
-                !isNullOrEmpty(getSpeed()) &&
-                !isNullOrEmpty(getBandwidth()) &&
-                !isNullOrEmpty(getDuration());
-    }
-
-    private boolean isNullOrEmpty(String str) {
-        return str == null || str.trim().isEmpty();
-    }
-
     public StringProperty firstNameProperty() {
         return firstName;
     }
@@ -50,22 +37,6 @@ public class InternetPackageModel {
 
     public StringProperty addressProperty() {
         return address;
-    }
-
-    public Property<String> speedProperty() {
-        return speed;
-    }
-
-    public StringProperty bandwidthProperty() {
-        return bandwidth;
-    }
-
-    public Property<String> durationProperty() {
-        return duration;
-    }
-
-    public IntegerProperty idProperty() {
-        return id;
     }
 
     public String getLastName() {

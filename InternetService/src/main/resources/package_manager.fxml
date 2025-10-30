@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Separator?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.internetPackages.Controller.PackageController"
+     styleClass="root">
+
+    <!-- Header with gradient -->
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <padding>
+            <Insets top="20" bottom="20" left="30" right="30"/>
+        </padding>
+        <ImageView fitWidth="40" fitHeight="40" preserveRatio="true">
+            <Image url="https://cdn.creazilla.com/icons/3431409/wifi-icon-sm.png"/>
+        </ImageView>
+        <VBox spacing="2">
+            <Label text="Internet Package Manager" styleClass="header-title">
+                <font>
+                    <Font name="System Bold" size="34"/>
+                </font>
+            </Label>
+            <Label text="Manage your internet subscriptions" styleClass="header-subtitle">
+                <font>
+                    <Font size="16"/>
+                </font>
+            </Label>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="closeBtn" styleClass="close-button" onAction="#closeForm">
+            <graphic>
+                <ImageView fitWidth="25" fitHeight="25" preserveRatio="true">
+                    <Image url="https://www.nicepng.com/png/full/47-470234_green-cancel-close-close-icon-png-green.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+    </HBox>
+
+    <!-- Main content area -->
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets top="20" bottom="30" left="30" right="30"/>
+        </padding>
+
+        <!-- Left side - Form -->
+        <VBox spacing="20" styleClass="form-container" prefWidth="420">
+            <padding>
+                <Insets top="25" bottom="25" left="25" right="25"/>
+            </padding>
+
+            <Label text="Add New Package" styleClass="section-title">
+                <font>
+                    <Font name="System Bold" size="22"/>
+                </font>
+            </Label>
+
+            <!-- Personal Information -->
+            <VBox spacing="12">
+                <Label text="PERSONAL INFORMATION" styleClass="section-label"/>
+
+                <VBox spacing="5">
+                    <Label text="First Name" styleClass="field-label"/>
+                    <TextField fx:id="firstName" promptText="Enter first name" styleClass="modern-textfield"/>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Last Name" styleClass="field-label"/>
+                    <TextField fx:id="lastName" promptText="Enter last name" styleClass="modern-textfield"/>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Address" styleClass="field-label"/>
+                    <TextField fx:id="address" promptText="Enter address" styleClass="modern-textfield"/>
+                </VBox>
+            </VBox>
+
+            <Separator styleClass="custom-separator"/>
+
+            <!-- Package Details -->
+            <VBox spacing="12">
+                <Label text="PACKAGE DETAILS" styleClass="section-label"/>
+
+                <VBox spacing="8">
+                    <Label text="Internet Speed (Mbps)" styleClass="field-label"/>
+                    <HBox spacing="8">
+                        <RadioButton fx:id="speed2" text="2" styleClass="speed-radio"/>
+                        <RadioButton fx:id="speed5" text="5" styleClass="speed-radio"/>
+                        <RadioButton fx:id="speed10" text="10" styleClass="speed-radio"/>
+                        <RadioButton fx:id="speed20" text="20" styleClass="speed-radio"/>
+                        <RadioButton fx:id="speed50" text="50" styleClass="speed-radio"/>
+                        <RadioButton fx:id="speed100" text="100" styleClass="speed-radio"/>
+                    </HBox>
+                </VBox>
+
+                <VBox spacing="8">
+                    <Label text="Bandwidth (GB)" styleClass="field-label"/>
+                    <HBox spacing="8">
+                        <RadioButton fx:id="bandwidth1" text="1" styleClass="bandwidth-radio"/>
+                        <RadioButton fx:id="bandwidth5" text="5" styleClass="bandwidth-radio"/>
+                        <RadioButton fx:id="bandwidth10" text="10" styleClass="bandwidth-radio"/>
+                        <RadioButton fx:id="bandwidth100" text="100" styleClass="bandwidth-radio"/>
+                        <RadioButton fx:id="bandwidthFlat" text="Flat" styleClass="bandwidth-radio"/>
+                    </HBox>
+                </VBox>
+
+                <VBox spacing="8">
+                    <Label text="Contract Duration" styleClass="field-label"/>
+                    <HBox spacing="8">
+                        <RadioButton fx:id="oneYearRadio" text="1 year" styleClass="duration-radio"/>
+                        <RadioButton fx:id="twoYearsRadio" text="2 years" styleClass="duration-radio"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+
+            <!-- Action Buttons -->
+            <HBox spacing="12" alignment="CENTER" VBox.vgrow="ALWAYS">
+                <VBox.margin>
+                    <Insets top="10"/>
+                </VBox.margin>
+                <Button text="Save" fx:id="saveBtn" onAction="#save" styleClass="primary-button" prefWidth="150"/>
+                <Button text="Clear Form" fx:id="clearBtn" onAction="#clearForm" styleClass="secondary-button" prefWidth="150"/>
+                <Button text="Delete" fx:id="deleteBtn" onAction="#deleteRow" styleClass="danger-button" prefWidth="150"/>
+            </HBox>
+        </VBox>
+
+        <!-- Right side - Table with filters -->
+        <VBox spacing="15" HBox.hgrow="ALWAYS">
+
+            <!-- Filter Section -->
+            <HBox styleClass="filter-container" spacing="15" alignment="CENTER_LEFT">
+                <padding>
+                    <Insets top="20" bottom="20" left="20" right="20"/>
+                </padding>
+
+                <VBox spacing="5">
+                    <Label text="Search by Name" styleClass="filter-label"/>
+                    <TextField fx:id="searchField" promptText="Search by name..." styleClass="search-field" prefWidth="180"/>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Filter by Speed" styleClass="filter-label"/>
+                    <ComboBox fx:id="speedFilter" promptText="All Speeds" styleClass="filter-combo" prefWidth="140"/>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Filter by Duration" styleClass="filter-label"/>
+                    <ComboBox fx:id="durationFilter" promptText="All Durations" styleClass="filter-combo" prefWidth="140"/>
+                </VBox>
+
+                <Region HBox.hgrow="ALWAYS"/>
+                <VBox spacing="5">
+                    <Label text=" " styleClass="filter-label"/>
+                    <Button text="Reset Filters" onAction="#resetFilters" styleClass="reset-button"/>
+                </VBox>
+            </HBox>
+
+            <!-- Statistics Cards -->
+            <HBox spacing="15">
+                <VBox  spacing="5" prefWidth="150" alignment="CENTER">
+                    <padding>
+                        <Insets top="15" bottom="15" left="15" right="15"/>
+                    </padding>
+                    <Label text="Total Packages" styleClass="stat-label"/>
+                    <Label fx:id="totalPackagesLabel" text="0" styleClass="stat-value">
+                        <font>
+                            <Font name="System Bold" size="32"/>
+                        </font>
+                    </Label>
+                </VBox>
+
+                <VBox  spacing="5" prefWidth="150" alignment="CENTER">
+                    <padding>
+                        <Insets top="15" bottom="15" left="15" right="15"/>
+                    </padding>
+                    <Label text="Active Filters" styleClass="stat-label"/>
+                    <Label fx:id="activeFiltersLabel" text="0" styleClass="stat-value">
+                        <font>
+                            <Font name="System Bold" size="32"/>
+                        </font>
+                    </Label>
+                </VBox>
+
+                <VBox  spacing="5" prefWidth="150" alignment="CENTER">
+                    <padding>
+                        <Insets top="15" bottom="15" left="15" right="15"/>
+                    </padding>
+                    <Label text="Avg Speed" styleClass="stat-label"/>
+                    <Label fx:id="avgSpeedLabel" text="0" styleClass="stat-value">
+                        <font>
+                            <Font name="System Bold" size="32"/>
+                        </font>
+                    </Label>
+                </VBox>
+            </HBox>
+
+            <!-- Table -->
+            <TableView fx:id="dataTable" styleClass="modern-table" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="firstNameColumn" text="First Name" prefWidth="110"/>
+                    <TableColumn fx:id="lastNameColumn" text="Last Name" prefWidth="110"/>
+                    <TableColumn fx:id="addressColumn" text="Address" prefWidth="150"/>
+                    <TableColumn fx:id="speedColumn" text="Speed" prefWidth="100"/>
+                    <TableColumn fx:id="bandwidthColumn" text="Bandwidth" prefWidth="90"/>
+                    <TableColumn fx:id="durationColumn" text="Duration" prefWidth="90"/>
+                </columns>
+            </TableView>
+
+            <!-- Footer info -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label fx:id="recordCountLabel" text="Showing 0 records" styleClass="footer-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="Click row to edit" styleClass="footer-hint"/>
+            </HBox>
+        </VBox>
+    </HBox>
+</VBox>
