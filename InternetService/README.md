@@ -12,8 +12,6 @@ Internet Package Manager streamlines the administration of internet subscription
 
 ![Image](https://github.com/user-attachments/assets/dddd118c-b86c-4354-80f3-80667e2d9a88)
 
-![Image](https://github.com/user-attachments/assets/6be2de5f-1eb3-44a2-9641-f0d8c5c43b58)
-
 ![Image](https://github.com/user-attachments/assets/68c2ba53-2910-48a6-9077-cd0ff1816237)
 
 ![Image](https://github.com/user-attachments/assets/d04f2971-9ad2-4694-bb85-0d44a7a4a911)
@@ -51,7 +49,7 @@ Double-click editing for instant record loading
 
 Instant validation feedback with field highlighting and success notifications
 
-⚡ Features
+## ⚡ Features
 
 Multi-criteria filtering by customer name, speed, and contract duration
 
@@ -63,7 +61,7 @@ Comprehensive exception and validation handling
 
 Auto-dismissing success messages for smoother UX
 
-🛠️ Tech Highlights
+## 🛠️ Tech Highlights
 
 Full-stack JavaFX + Spring Boot integration
 
@@ -73,4 +71,3 @@ Real-time data binding and UI responsiveness
 
 Robust validation and exception handling
 
-Professional UI/UX with modern styling and animations
